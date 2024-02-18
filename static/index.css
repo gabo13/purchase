@@ -1,0 +1,27 @@
+* {
+  background-color: black;
+  color: white;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 25% 50%;
+  gap: 5px;
+}
+
+.container>label {
+  grid-column: 1;
+  justify-self: end;
+}
+
+table, thead, th, tr, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+}
+
+thead{
+  padding: 5px;
+  margin: 5px;
+  position: sticky;
+  top: 0;
+}

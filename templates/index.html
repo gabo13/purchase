@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/index.css">
+  </head>
+  <body>
+    <h1>Költségek</h1>
+    <form action="/" method="POST">
+    <div class= "container">
+    <label for="month">Hónap</label>
+    <input type="number" name="month" id="month">
+    <label for="day">Nap</label>
+    <input type="number" name="day" id="day">
+    <label for="shop">Bolt</label>
+    <input type="text" name="shop" id="shop">
+    <label for="cost">Költség</label>
+    <input type="number" name="cost" id="cost">
+    <label for="comment">Megjegyzés</label>
+    <input type="text" name="comment" id="comment">
+    <input type="submit" value="Hozzáad">
+    </div>
+    </form>
+    <table>
+    <thead>
+        <tr>
+        <td>Hónap</td>
+        <td>Nap</td>
+        <td>Bolt</td>
+        <td>Költség</td>
+        <td>Megjegyzés</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vasarlas in vasarlasok %}
+        <tr>
+        <td>{{ vasarlas[1] }}</td>
+        <td>{{ vasarlas[2] }}</td>
+        <td>{{ vasarlas[3] }}</td>
+        <td>{{ vasarlas[4] }}</td>
+        <td>{{ vasarlas[5] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <script src="/static/index.js"></script>
+  </body>
+</html>
