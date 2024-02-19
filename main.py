@@ -1,7 +1,7 @@
 
 import sqlite3
 import random
-from flask import Flask, render_template, g
+from flask import Flask, render_template, g, request, redirect
 
 app = Flask(__name__)
 
@@ -21,15 +21,25 @@ def close_connection(exception):
 @app.route('/', methods= ['GET', 'POST'])
 def index():
     with app.app_context():
-            c = get_db().cursor()
-            #fill_table(c,256)
-       if request.method = 'GET':
+        c = get_db().cursor()
+        #fill_table(c,256)
+        if request.method == 'GET':
             c.execute("SELECT * FROM spend order by month, day;")
             rows = c.fetchall()
             return render_template('index.html', vasarlasok = rows)
-       if request.method = 'POST':
-            request.form.
-
+        if request.method == 'POST':
+            c.execute( '''INSERT INTO spend
+                       (month, day, shop,cost, comment)
+                       VALUES (?,?,?,?,?);''',
+                       (request.form.get('month', type= int),
+                        request.form.get('day', type= int),
+                        request.form.get('shop'),
+                        request.form.get('cost', type= float),
+                        request.form.get('comment')
+                       )
+                     )
+            c.connection.commit()
+    return redirect('/')
 def create_table(c):
     c.execute("DROP TABLE IF EXISTS spend")
     c.execute( '''CREATE TABLE IF NOT EXISTS spend
