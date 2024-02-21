@@ -6,10 +6,23 @@
   </head>
   <body>
     <h1>Költségek</h1>
-    <form action="/" method="POST">
+    <form action="/" method="POST" onsubmit="return validate(e)">
     <div class= "container">
     <label for="month">Hónap</label>
-    <input type="number" name="month" id="month">
+    <select name="month" id="month" autocomplite="on">
+      <option value="1">Január</option>
+      <option value="2">Február</option>
+      <option value="3">Március</option>
+      <option value="4">Április</option>
+      <option value="5">Május</option>
+      <option value="6">Június</option>
+      <option value="7">Július</option>
+      <option value="8">Augusztus</option>
+      <option value="9">Szeptembet</option>
+      <option value="10">Október</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+    </select>
     <label for="day">Nap</label>
     <input type="number" name="day" id="day">
     <label for="shop">Bolt</label>
@@ -33,7 +46,7 @@
     </thead>
     <tbody>
         {% for vasarlas in vasarlasok %}
-        <tr>
+        <tr data-id="{{ vasarlas[0] }}">
         <td>{{ vasarlas[1] }}</td>
         <td>{{ vasarlas[2] }}</td>
         <td>{{ vasarlas[3] }}</td>
